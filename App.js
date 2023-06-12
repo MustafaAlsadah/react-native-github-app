@@ -3,6 +3,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +11,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
 import RepoCard from './RepoCard';
 import { SvgUri } from 'react-native-svg';
+
+const Tab = createMaterialTopTabNavigator();
+
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Starred Repos" component={StarredRepos} />
+    </Tab.Navigator>
+  );
+}
 
 async function save(key, value) {
   await SecureStore.setItemAsync(key, value);
@@ -38,7 +51,6 @@ async function getData(url, setState) {
       },
     })
     const data = await response.json();
-    return data;
     // alert(JSON.stringify(data));
     setState(data);
   }catch(err){
@@ -138,13 +150,16 @@ function StarredRepos() {
       
     }, []);
 
+    console.log(data);
         
     
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        {data && data.map((item) => item && <Text style={{margin: 40}}>{JSON.stringify(item)}</Text>)}
-        <Text>{JSON.stringify(data)}</Text>
+        
+        {data &&
+          data.map((repo, index) => (
+            <RepoCard key={index} name={repo.name} language={repo.language} link={repo.svn_url} avatar={repo.avatar_url}/>
+          ))}
       </View>
     );
 
@@ -153,13 +168,11 @@ function StarredRepos() {
 function Profile(){
   const [data, setData] = React.useState(null);
   const [repos , setRepos] = React.useState(null);
-  React.useEffect(async ()=>{
-    const userData = await getData("https://api.github.com/user", setData);
-    const userRepos = await getData(`https://api.github.com/users/${data?.login}/repos`, setRepos);
-    setData(userData);
-    setRepos(userRepos); 
-    alert(data);
-    alert(repos);
+  React.useEffect(()=>{
+    getData("https://api.github.com/user", setData);
+    getData("https://api.github.com/users/MustafaAlsadah/repos", setRepos);
+    console.log(data);
+    console.log(repos);
   }, [])
   return(
     // <View style={styles.container}>
@@ -175,21 +188,22 @@ function Profile(){
           style={{ width: 160, height: 160, borderRadius: 100 }}
         />
         <Text style={{ fontSize: 27, fontWeight: '350', marginBottom: 15 }}>
-          {data?.login}
-          {alert(data?.login)}
+          {data && data.login}
         </Text>
-        <View>
         <SvgUri uri={`https://ghchart.rshah.org/${data?.login}`} width="350" style={{margin:30}}/>
 
-        </View>
         {repos &&
           repos.map((repo, index) => (
-            <RepoCard key={index} name={repo.name} language={repo.language} />
+            <RepoCard key={index} name={repo.name} language={repo.language} link={repo.svn_url} />
           ))}
       </View>
     </ScrollView>
   )
 }
+
+
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -199,7 +213,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="StarredRepos" component={StarredRepos} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Profile" component={MyTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
