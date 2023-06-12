@@ -2,13 +2,14 @@ import * as React from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
-
+import RepoCard from './RepoCard';
+import { SvgUri } from 'react-native-svg';
 
 async function save(key, value) {
   await SecureStore.setItemAsync(key, value);
@@ -17,9 +18,31 @@ async function save(key, value) {
 async function getValueFor(key) {
   let result = await SecureStore.getItemAsync(key);
   if (result) {
-    alert("🔐 Here's your value 🔐 \n" + result);
+    console.log('SecureStore result:', result);
+    // alert("🔐 Here's your value 🔐 \n" + result);
   } else {
     alert('No values stored under that key.');
+  }
+  return result;
+}
+
+async function getData(url, setState) {
+  try{
+    const authToken = await getValueFor('token');
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${authToken.slice(1, -1)}`,
+        Accept: 'application/vnd.github.v3+json',
+      },
+    })
+    const data = await response.json();
+    return data;
+    // alert(JSON.stringify(data));
+    setState(data);
+  }catch(err){
+    alert(err);
   }
 }
 // WebBrowser.maybeCompleteAuthSession();
@@ -68,26 +91,19 @@ function HomeScreen() {
 
           const tokenData = await tokenResponse.json();
           const authToken = tokenData.access_token;
+          // alert("homescreen token: "+authToken);
 
-          await save("token", authToken);
+           save("token", JSON.stringify(authToken)).then(()=>{
+              NAVIGATOR.replace('Profile');
+           })
 
           // Assuming you have the authentication token stored in a variable called 'authToken'
-
-
-
-          alert(authToken);
         } catch (err) {
           alert(err);
         }
-      NAVIGATOR.replace('Details');
     }
     getToken();
   }}, [response])
-
-  const authUser = async () => {
-      
-      alert("login")
-    } 
 
 
   return (
@@ -113,34 +129,66 @@ function HomeScreen() {
   );
 }
 
-function DetailsScreen() {
+function StarredRepos() {
+    const [data, setData] = React.useState(null);
 
-getValueFor('token').then((authToken) => {
-  fetch('https://api.github.com/user/starred', {
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${authToken}`,
-    Accept: 'application/vnd.github.v3+json',
-  },
-})
-  .then(response => response.json())
-  .then(data => {
-    // Handle the response data
-    console.log('Starred Repositories:', data);
-  })
-  .catch(error => {
-    // Handle the error
-    alert('Error fetching starred repositories:', error);
-  });
+    React.useEffect(()=>{
+      
+      getData("https://api.github.com/user/starred", setData);
+      
+    }, []);
 
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-});
-  
+        
+    
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+        {data && data.map((item) => item && <Text style={{margin: 40}}>{JSON.stringify(item)}</Text>)}
+        <Text>{JSON.stringify(data)}</Text>
+      </View>
+    );
 
+}
+
+function Profile(){
+  const [data, setData] = React.useState(null);
+  const [repos , setRepos] = React.useState(null);
+  React.useEffect(async ()=>{
+    const userData = await getData("https://api.github.com/user", setData);
+    const userRepos = await getData(`https://api.github.com/users/${data?.login}/repos`, setRepos);
+    setData(userData);
+    setRepos(userRepos); 
+    alert(data);
+    alert(repos);
+  }, [])
+  return(
+    // <View style={styles.container}>
+
+    //   <Image source={{uri: data && data.avatar_url}}  style={{width: 160, height: 160, borderRadius: 100} } />
+    //   <Text style={{fontSize: 27, fontWeight:350, marginBottom:15}}>{data && data.login}</Text>
+    //   {repos && repos.map((repo, index)=><RepoCard key={index} name={repo.name}  language={repo.language} />)}
+    // </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Image
+          source={{ uri: data && data.avatar_url }}
+          style={{ width: 160, height: 160, borderRadius: 100 }}
+        />
+        <Text style={{ fontSize: 27, fontWeight: '350', marginBottom: 15 }}>
+          {data?.login}
+          {alert(data?.login)}
+        </Text>
+        <View>
+        <SvgUri uri={`https://ghchart.rshah.org/${data?.login}`} width="350" style={{margin:30}}/>
+
+        </View>
+        {repos &&
+          repos.map((repo, index) => (
+            <RepoCard key={index} name={repo.name} language={repo.language} />
+          ))}
+      </View>
+    </ScrollView>
+  )
 }
 
 const Stack = createNativeStackNavigator();
@@ -150,7 +198,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="StarredRepos" component={StarredRepos} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
