@@ -8,7 +8,7 @@
  */
 const { onRequest } = require("firebase-functions/v2/https");
 const fetch = require('node-fetch');
-// const logger = require("firebase-functions/logger");
+const {logger} = require("firebase-functions");
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -54,4 +54,10 @@ exports.repos = onRequest(async (req, res)=>{
       })
       const data = await response.json();
       res.json(data);
+});
+
+exports.webhooks = onRequest((req, res)=>{
+    console.log("webhooks: "+JSON.stringify(req.body));
+    logger.log("webhooks: "+JSON.stringify(req.body));
+    res.json({message: "webhooks"});
 });
