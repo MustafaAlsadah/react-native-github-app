@@ -1,0 +1,255 @@
+[debug] [2023-06-14T09:46:21.120Z] ----------------------------------------------------------------------
+[debug] [2023-06-14T09:46:21.123Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2023-06-14T09:46:21.124Z] CLI Version:   12.3.1
+[debug] [2023-06-14T09:46:21.124Z] Platform:      win32
+[debug] [2023-06-14T09:46:21.124Z] Node Version:  v16.20.0
+[debug] [2023-06-14T09:46:21.125Z] Time:          Wed Jun 14 2023 12:46:21 GMT+0300 (Arabian Standard Time)
+[debug] [2023-06-14T09:46:21.125Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-06-14T09:46:21.240Z] Object ".emulators" in "firebase.json" has unknown property: {"additionalProperty":"host"}
+[debug] [2023-06-14T09:46:21.247Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-06-14T09:46:21.247Z] > authorizing via signed-in user (mustafaalsadah1@gmail.com)
+[debug] [2023-06-14T09:46:21.248Z] [iam] checking project lw-github-bf7ad for permissions ["firebase.projects.get"]
+[debug] [2023-06-14T09:46:21.250Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/lw-github-bf7ad:testIamPermissions [none]
+[debug] [2023-06-14T09:46:21.251Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/lw-github-bf7ad:testIamPermissions x-goog-quota-user=projects/lw-github-bf7ad
+[debug] [2023-06-14T09:46:21.251Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lw-github-bf7ad:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-06-14T09:46:22.252Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/lw-github-bf7ad:testIamPermissions 200
+[debug] [2023-06-14T09:46:22.253Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lw-github-bf7ad:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-06-14T09:46:22.256Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lw-github-bf7ad [none]
+[debug] [2023-06-14T09:46:22.761Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lw-github-bf7ad 200
+[debug] [2023-06-14T09:46:22.762Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lw-github-bf7ad {"projectId":"lw-github-bf7ad","projectNumber":"877374119367","displayName":"LW-Github","name":"projects/lw-github-bf7ad","resources":{"hostingSite":"lw-github-bf7ad"},"state":"ACTIVE","etag":"1_74e17059-9f8e-47a2-b995-d61ce66efaf0"}
+[info] 
+[info] === Serving from 'C:\Users\admin\Desktop\Projects\react-native-github-app'...
+[info] 
+[debug] [2023-06-14T09:46:22.774Z] defaultcredentials: writing to file C:\Users\admin\AppData\Roaming\firebase\mustafaalsadah1_gmail_com_application_default_credentials.json
+[debug] [2023-06-14T09:46:22.778Z] Setting GAC to C:\Users\admin\AppData\Roaming\firebase\mustafaalsadah1_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\admin\\AppData\\Roaming\\firebase\\mustafaalsadah1_gmail_com_application_default_credentials.json"}}
+[debug] [2023-06-14T09:46:22.781Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lw-github-bf7ad/adminSdkConfig [none]
+[debug] [2023-06-14T09:46:23.310Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lw-github-bf7ad/adminSdkConfig 200
+[debug] [2023-06-14T09:46:23.311Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lw-github-bf7ad/adminSdkConfig {"projectId":"lw-github-bf7ad","storageBucket":"lw-github-bf7ad.appspot.com"}
+[info] i  functions: Watching "C:\Users\admin\Desktop\Projects\react-native-github-app\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"C:\\Users\\admin\\Desktop\\Projects\\react-native-github-app\\functions\" for Cloud Functions..."}}
+[debug] [2023-06-14T09:46:23.338Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-06-14T09:46:25.172Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-06-14T09:46:25.173Z] Building nodejs source
+[debug] [2023-06-14T09:46:25.173Z] Failed to find version of module node: reached end of search path C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "16". Using node@16 from host. 
+[debug] [2023-06-14T09:46:25.176Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-06-14T09:46:25.184Z] Found firebase-functions binary at 'C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules\.bin\firebase-functions'
+[debug] [2023-06-14T09:46:25.465Z] Serving at port 8848
+
+[debug] [2023-06-14T09:46:25.906Z] Got response from /__/functions.yaml {"endpoints":{"user":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"user"},"starred":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"starred"},"repos":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"repos"},"webhooks":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"webhooks"},"gptClient":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"gptClient"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-06-14T09:46:25.922Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: user, starred, repos, webhooks, gptClient. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: user, starred, repos, webhooks, gptClient."}}
+[info] +  functions[us-central1-user]: http function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/user). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/user)."}}
+[info] +  functions[us-central1-starred]: http function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/starred). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/starred)."}}
+[info] +  functions[us-central1-repos]: http function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/repos). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/repos)."}}
+[info] +  functions[us-central1-webhooks]: http function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/webhooks). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/webhooks)."}}
+[info] +  functions[us-central1-gptClient]: http function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/gptClient). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5000/lw-github-bf7ad/us-central1/gptClient)."}}
+[debug] [2023-06-14T09:48:16.491Z] File C:\Users\admin\Desktop\Projects\react-native-github-app\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File C:\\Users\\admin\\Desktop\\Projects\\react-native-github-app\\functions\\index.js changed, reloading triggers"}}
+[debug] [2023-06-14T09:48:17.506Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-06-14T09:48:20.422Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-06-14T09:48:20.423Z] Building nodejs source
+[debug] [2023-06-14T09:48:20.423Z] Failed to find version of module node: reached end of search path C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "16". Using node@16 from host. 
+[debug] [2023-06-14T09:48:20.425Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-06-14T09:48:20.433Z] Found firebase-functions binary at 'C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules\.bin\firebase-functions'
+[debug] [2023-06-14T09:48:20.746Z] Serving at port 8820
+
+[debug] [2023-06-14T09:48:21.208Z] Got response from /__/functions.yaml {"endpoints":{"user":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"user"},"starred":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"starred"},"repos":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"repos"},"webhooks":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"webhooks"},"gptClient":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"gptClient"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-06-14T09:48:21.215Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: user, starred, repos, webhooks, gptClient. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: user, starred, repos, webhooks, gptClient."}}
+[debug] [2023-06-14T09:52:04.974Z] File C:\Users\admin\Desktop\Projects\react-native-github-app\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File C:\\Users\\admin\\Desktop\\Projects\\react-native-github-app\\functions\\index.js changed, reloading triggers"}}
+[debug] [2023-06-14T09:52:05.989Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-06-14T09:52:07.973Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-06-14T09:52:07.973Z] Building nodejs source
+[debug] [2023-06-14T09:52:07.973Z] Failed to find version of module node: reached end of search path C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "16". Using node@16 from host. 
+[debug] [2023-06-14T09:52:07.974Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-06-14T09:52:07.982Z] Found firebase-functions binary at 'C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules\.bin\firebase-functions'
+[debug] [2023-06-14T09:52:08.359Z] Serving at port 8212
+
+[debug] [2023-06-14T09:52:08.816Z] Got response from /__/functions.yaml {"endpoints":{"user":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"user"},"starred":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"starred"},"repos":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"repos"},"webhooks":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"webhooks"},"gptClient":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"gptClient"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-06-14T09:52:08.821Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: user, starred, repos, webhooks, gptClient. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: user, starred, repos, webhooks, gptClient."}}
+[debug] [2023-06-14T10:01:25.938Z] File C:\Users\admin\Desktop\Projects\react-native-github-app\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File C:\\Users\\admin\\Desktop\\Projects\\react-native-github-app\\functions\\index.js changed, reloading triggers"}}
+[debug] [2023-06-14T10:01:26.948Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-06-14T10:01:29.030Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-06-14T10:01:29.030Z] Building nodejs source
+[debug] [2023-06-14T10:01:29.030Z] Failed to find version of module node: reached end of search path C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "16". Using node@16 from host. 
+[debug] [2023-06-14T10:01:29.031Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-06-14T10:01:29.038Z] Found firebase-functions binary at 'C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules\.bin\firebase-functions'
+[debug] [2023-06-14T10:01:29.354Z] Serving at port 8131
+
+[debug] [2023-06-14T10:01:29.904Z] Got response from /__/functions.yaml {"endpoints":{"user":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"user"},"starred":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"starred"},"repos":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"repos"},"webhooks":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"webhooks"},"gptClient":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"gptClient"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-06-14T10:01:29.909Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: user, starred, repos, webhooks, gptClient. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: user, starred, repos, webhooks, gptClient."}}
+[debug] [2023-06-14T10:15:46.741Z] File C:\Users\admin\Desktop\Projects\react-native-github-app\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File C:\\Users\\admin\\Desktop\\Projects\\react-native-github-app\\functions\\index.js changed, reloading triggers"}}
+[debug] [2023-06-14T10:15:47.755Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-06-14T10:15:50.094Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-06-14T10:15:50.094Z] Building nodejs source
+[debug] [2023-06-14T10:15:50.094Z] Failed to find version of module node: reached end of search path C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "16". Using node@16 from host. 
+[debug] [2023-06-14T10:15:50.095Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-06-14T10:15:50.102Z] Found firebase-functions binary at 'C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules\.bin\firebase-functions'
+[debug] [2023-06-14T10:15:50.380Z] Serving at port 8506
+
+[debug] [2023-06-14T10:15:50.820Z] Got response from /__/functions.yaml {"endpoints":{"user":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"user"},"starred":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"starred"},"repos":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"repos"},"webhooks":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"webhooks"},"gptClient":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"gptClient"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-06-14T10:15:50.824Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: user, starred, repos, webhooks, gptClient. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: user, starred, repos, webhooks, gptClient."}}
+[debug] [2023-06-14T10:30:03.777Z] File C:\Users\admin\Desktop\Projects\react-native-github-app\functions\index.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File C:\\Users\\admin\\Desktop\\Projects\\react-native-github-app\\functions\\index.js changed, reloading triggers"}}
+[debug] [2023-06-14T10:30:04.782Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-06-14T10:30:06.742Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-06-14T10:30:06.742Z] Building nodejs source
+[debug] [2023-06-14T10:30:06.742Z] Failed to find version of module node: reached end of search path C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules
+[warn] !  functions: Your requested "node" version "18" doesn't match your global version "16". Using node@16 from host. 
+[debug] [2023-06-14T10:30:06.743Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-06-14T10:30:06.753Z] Found firebase-functions binary at 'C:\Users\admin\Desktop\Projects\react-native-github-app\functions\node_modules\.bin\firebase-functions'
+[debug] [2023-06-14T10:30:07.120Z] Serving at port 8049
+
+[debug] [2023-06-14T10:30:07.604Z] Got response from /__/functions.yaml {"endpoints":{"user":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"user"},"starred":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"starred"},"repos":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"repos"},"webhooks":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"webhooks"},"gptClient":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"gptClient"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2023-06-14T10:30:07.609Z] shutdown requested via /__/quitquitquit
+
+[info] +  functions: Loaded functions definitions from source: user, starred, repos, webhooks, gptClient. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: user, starred, repos, webhooks, gptClient."}}
