@@ -61,6 +61,9 @@ exports.repos = onRequest(async (req, res)=>{
 exports.ghWebHooks = onRequest(async (req, res)=>{
 
 console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+// console.log(JSON.stringify(req.body));
+console.log(JSON.stringify(req.body.issue));
+
 console.log(req.body.issue.title);
 console.log(req.body.issue.comments_url);
 console.log(req.body.comment.user.login)
@@ -126,4 +129,3 @@ exports.gptClient = onRequest(async (req, res)=>{
   res.json({message: gptResponse});
 
 });
- 
