@@ -33,7 +33,7 @@ exports.user = onRequest(async (req, res)=>{
       res.json(data);
 });
 
-exports.starred = onRequest(async (req, res)=>{
+exports.starred = onRequest(async (req, res)=>{ 
     const authToken = req.query.token;
     const response = await fetch("https://api.github.com/user/starred", {
         method: 'GET',
@@ -46,89 +46,94 @@ exports.starred = onRequest(async (req, res)=>{
       res.json(data);
 });
 
-exports.repos = onRequest(async (req, res)=>{
-    const authToken = req.query.token;
-    const name = req.query.name;
-    const response = await fetch("https://api.github.com/users/"+name+"/repos", {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          Accept: 'application/vnd.github.v3+json',
-        },
-      })
+exports.repos = onRequest(async (req, res)=>{ 
+      const authToken = req.query.token;
+      const name = req.query.name;
+      console.log(" name: "+name);
+      const response = await fetch("https://api.github.com/user/repos", {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            Accept: 'application/vnd.github.v3+json',
+          },
+        })
+        const data = await response.json();
+        res.json(data);
+  });
+
+  exports.sendWebHook = onRequest(async (req, res)=>{
+    try{
+      console.log(JSON.stringify(req.body))
+      const payload = JSON.parse(req.body.payload)
+
+      console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh: "+JSON.stringify(payload.comment));
+      console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh: "+JSON.stringify(payload.comment.body));
+
+
+  const { title, comments_url } = payload.issue;
+  const { login } = payload.comment.user;
+  const { comment } = payload.comment.body;
+
+  if (login === "KoksalBot") return;
+  if (login === "KoksalBot") res.json({message: "koksalbot -> don't respond"});
+
+
+  const askGPT = async () => {
+    const openaiKey = process.env.OPENAI_KEY;
+    console.log("openaiKey: "+openaiKey )
+    const configuration = new Configuration({
+      apiKey: openaiKey,
+    });
+    const openai = new OpenAIApi(configuration);
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{role: "user", content: JSON.stringify(payload.comment.body)}]
+    });
+    console.log("fter gpt response");
+
+
+    const gptResponse = JSON.stringify(response?.data?.choices[0]?.message?.content ?? "UNEXPECTED ERROR: NO RESPONSE");
+
+    return gptResponse;
+  };
+
+  const gptResponse = await askGPT();
+
+  const postComment = async () => {
+
+    try {
+      const ghToken = process.env.GITHUB_TOKEN;
+
+      const response = await fetch(
+        comments_url
+        ,{
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${ghToken}`,
+            Accept: 'application/vnd.github.v3+json',
+          },
+          body: JSON.stringify({ body: gptResponse.slice(1,-1) }), // The content of the comment
+        }
+      );
+      console.log("fter post comment");
+
+
       const data = await response.json();
-      res.json(data);
-});
+      console.log(JSON.stringify(data));
 
-exports.sendWebHook = onRequest(async (req, res)=>{
-  try{
-    const payload = JSON.parse(req.body.payload)
+    } catch (error) {
+      console.log('Error posting comment:', error);
+    }
+  };
 
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh: "+JSON.stringify(payload.comment));
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh: "+JSON.stringify(payload.comment.body));
-
-
-const { title, comments_url } = payload.issue;
-const { login } = payload.comment.user;
-const { comment } = payload.comment.body;
-
-if (login === "KoksalBot") return;
-if (login === "KoksalBot") res.json({message: "koksalbot -> don't respond"});
-
-
-const askGPT = async () => {
-  const openaiKey = process.env.OPENAI_KEY;
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
-  const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [{role: "user", content: JSON.stringify(payload.comment.body)}]
-  });
-  console.log("fter gpt response");
-
-
-  const gptResponse = JSON.stringify(response?.data?.choices[0]?.message?.content ?? "UNEXPECTED ERROR: NO RESPONSE");
-
-  return gptResponse;
-};
-
-const gptResponse = await askGPT();
-
-const postComment = async () => {
-
-  try {
-    const response = await fetch(
-      comments_url
-      ,{
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer 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`,
-          Accept: 'application/vnd.github.v3+json',
-        },
-        body: JSON.stringify({ body: gptResponse }), // The content of the comment
-      }
-    );
-    console.log("fter post comment");
-
-
-    const data = await response.json();
-    console.log(JSON.stringify(data));
-
-  } catch (error) {
-    console.log('Error posting comment:', error);
-  }
-};
-
-await postComment();
-  
+  await postComment();
     
-    res.json({message: "gptResponse"});
-  }catch(err){
-    console.log(err);
-    res.json({message: err.message});
-  }
+      
+      res.json({message: "gptResponse"});
+    }catch(err){
+      console.log(err);
+      res.json({message: err.message});
+    }
 
 });
 
