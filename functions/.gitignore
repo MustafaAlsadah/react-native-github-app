@@ -1,1 +1,34 @@
+# Ignore compiled object files, libraries, and executables
+*.o
+*.a
+*.exe
+
+# Ignore dependencies and build artifacts
 node_modules/
+vendor/
+build/
+dist/
+
+# Ignore environment-specific files
+.env
+.env.local
+.env.*.local
+
+# Ignore log files
+*.log
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# Ignore miscellaneous files
+*.swp
+Thumbs.db
+
+# Ignore sensitive or private information
+config.ini
+credentials.json
+secrets.txt

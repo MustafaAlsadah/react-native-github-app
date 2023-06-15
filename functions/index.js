@@ -11,6 +11,7 @@ const fetch = require('node-fetch');
 const {logger} = require("firebase-functions");
 const { Configuration, OpenAIApi } = require("openai");
 const fs = require('fs');
+require('dotenv').config();
 // const axios = require('axios');
 
 // Create and deploy your first functions
@@ -76,8 +77,9 @@ if (login === "KoksalBot") res.json({message: "koksalbot -> don't respond"});
 
 
 const askGPT = async () => {
+  const openaiKey = process.env.OPENAI_KEY;
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_KEY,
   });
   const openai = new OpenAIApi(configuration);
   const response = await openai.createChatCompletion({
